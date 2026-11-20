@@ -1,0 +1,14 @@
+# Navidrome: tu propio Spotify -> http://localhost:4533
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    user: "1000:1000"               # tu usuario de Ubuntu (compruébalo con: id -u)
+    ports:
+      - "4533:4533"
+    environment:
+      ND_SCANSCHEDULE: "1m"         # revisa cada minuto si agregaste música
+    volumes:
+      - ./data:/data                # base de datos de Navidrome
+      - ./musica:/music:ro          # pon aquí tu música (solo lectura)
+    restart: unless-stopped

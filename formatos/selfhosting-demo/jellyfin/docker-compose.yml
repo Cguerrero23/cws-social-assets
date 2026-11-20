@@ -1,0 +1,12 @@
+# Jellyfin: tu propio Netflix -> http://localhost:8096
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./config:/config            # configuración y usuarios
+      - ./cache:/cache              # miniaturas y caché
+      - ./peliculas:/media/peliculas:ro   # pon aquí tus películas (solo lectura)
+    restart: unless-stopped

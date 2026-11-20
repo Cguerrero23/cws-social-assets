@@ -1,0 +1,17 @@
+# Pi-hole: bloqueador de anuncios para toda la casa -> http://localhost:8081/admin
+# Antes de encenderlo en Ubuntu, libera el puerto 53 (ver README).
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    ports:
+      - "53:53/tcp"                 # DNS
+      - "53:53/udp"                 # DNS
+      - "8081:80/tcp"               # panel web
+    environment:
+      TZ: "America/Santo_Domingo"
+      FTLCONF_webserver_api_password: "cambia-esta-clave"   # clave del panel
+      FTLCONF_dns_listeningMode: "all"                      # responde a otros equipos de tu red
+    volumes:
+      - ./etc-pihole:/etc/pihole
+    restart: unless-stopped

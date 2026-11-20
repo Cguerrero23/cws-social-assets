@@ -1,0 +1,13 @@
+# Vaultwarden: tu propio gestor de contraseñas (compatible con las apps de Bitwarden)
+# -> http://localhost:8082  (en localhost funciona sin HTTPS; fuera de la laptop necesita HTTPS)
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    ports:
+      - "8082:80"
+    environment:
+      SIGNUPS_ALLOWED: "true"       # créate tu cuenta y luego cámbialo a "false"
+    volumes:
+      - ./vw-data:/data             # aquí vive tu bóveda: respáldala
+    restart: unless-stopped

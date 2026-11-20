@@ -1,0 +1,1 @@
+Immich usa el docker-compose.yml y .env oficiales. Mira la sección "Immich" del README principal.
